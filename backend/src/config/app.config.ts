@@ -19,3 +19,5 @@ const appConfig = () => ({
     "http://localhost:3000/auth/google/callback"
   ),
 });
+
+export default appConfig();
