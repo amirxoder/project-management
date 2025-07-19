@@ -4,6 +4,9 @@ import cors from "cors";
 import session from "cookie-session";
 import appConfig from "./config/app.config";
 import connectDatabase from "./config/database.config";
+import { errorHandler } from "./middlewares/errorHandler.middleware";
+import { HTTPSTATUS } from "./config/http.config";
+import { asyncHandler } from "./middlewares/ayncHandler.middleware";
 
 const app = express();
 const BASE_PATH = appConfig.BASE_PATH;
@@ -27,11 +30,12 @@ app.use(
   })
 );
 
-app.get(`${BASE_PATH}/health`, (req: Request, res: Response) => {
-  res.status(200).json({ status: "ok" });
-});
+app.get(
+  `${BASE_PATH}/health`,
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {})
+);
 
-// app.use(errorHandler);
+app.use(errorHandler as NextFunction);
 
 app.listen(appConfig.PORT, async () => {
   console.log(
