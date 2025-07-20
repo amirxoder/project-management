@@ -32,7 +32,11 @@ app.use(
 
 app.get(
   `${BASE_PATH}/health`,
-  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {})
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    // Uncomment the next line to
+    // throw new Error("Simulated error for testing");
+    res.status(HTTPSTATUS.OK).json({ message: "Server is healthy" });
+  })
 );
 
 app.use(errorHandler as NextFunction);
