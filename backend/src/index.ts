@@ -5,8 +5,10 @@ import session from "cookie-session";
 import appConfig from "./config/app.config";
 import connectDatabase from "./config/database.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
-import { HTTPSTATUS } from "./config/http.config";
+
 import { asyncHandler } from "./middlewares/ayncHandler.middleware";
+import { BadRequestException } from "./utils/appError";
+import { ErrorCodeEnum } from "./enums/errorCode.enum";
 
 const app = express();
 const BASE_PATH = appConfig.BASE_PATH;
@@ -33,9 +35,13 @@ app.use(
 app.get(
   `${BASE_PATH}/health`,
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    throw new BadRequestException(
+      "This is bad request that got from api",
+      ErrorCodeEnum.VALIDATION_ERROR
+    );
     // Uncomment the next line to
     // throw new Error("Simulated error for testing");
-    res.status(HTTPSTATUS.OK).json({ message: "Server is healthy" });
+    // res.status(HTTPSTATUS.OK).json({ message: "Server is healthy" });
   })
 );
 
