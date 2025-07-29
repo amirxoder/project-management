@@ -9,8 +9,8 @@ const appConfig = () => ({
   SESSION_SECRET: getEnv("SESSION_SECRET", "default_secret"),
   SESSION_EXPIRES_IN: getEnv("SESSION_EXPIRES_IN", "1d"),
 
-  GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID", ""),
-  GOOGLE_CLIENT_SECRET: getEnv("GOOGLE_CLIENT_SECRET", ""),
+  GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID", "safasf"),
+  GOOGLE_CLIENT_SECRET: getEnv("GOOGLE_CLIENT_SECRET", "asdf"),
   GOOGLE_CALLBACK_URL: getEnv("GOOGLE_CALLBACK_URL", "/auth/google/callback"),
 
   FRONTEND_ORIGIN: getEnv("FRONTEND_ORIGIN", "http://localhost:3000"),
