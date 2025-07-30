@@ -10,6 +10,10 @@ import { asyncHandler } from "./middlewares/ayncHandler.middleware";
 import { BadRequestException } from "./utils/appError";
 import { ErrorCodeEnum } from "./enums/errorCode.enum";
 
+import "./config/passport.config";
+import passport from "passport";
+import authRoute from "./routes/auth.route";
+
 const app = express();
 const BASE_PATH = appConfig.BASE_PATH;
 
@@ -25,6 +29,10 @@ app.use(
     sameSite: "lax",
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(
   cors({
     origin: appConfig.FRONTEND_ORIGIN,
@@ -44,6 +52,8 @@ app.get(
     // res.status(HTTPSTATUS.OK).json({ message: "Server is healthy" });
   })
 );
+
+app.use(`/${BASE_PATH}/auth`, authRoute);
 
 app.use(errorHandler as NextFunction);
 
