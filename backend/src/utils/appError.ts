@@ -40,7 +40,7 @@ export class InternalServerError extends AppError {
 }
 
 export class NotFoundException extends AppError {
-  constructor(message: "Resource Not Found", errorCode?: ErrorCodeEnumType) {
+  constructor(message: string, errorCode?: ErrorCodeEnumType) {
     super(
       message,
       HTTPSTATUS.NOT_FOUND,
